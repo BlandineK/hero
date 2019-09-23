@@ -1,0 +1,24 @@
+{{#partial "content"}}
+<div class="container-fluid" id="page3">
+    <h1>Add a Squad</h1>
+    <br>
+    <br>
+    <br>
+    <form action="/squads" method="post">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="size">Max Size</label>
+            <input id="size" name="size" type="number" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="cause">Cause</label>
+            <textarea id="cause" name="cause" type="text" row "10" class="form-control"></textarea>
+        </div>
+        <button type="submit" class="btn btn-danger btn-lg">Add Squad!</button>
+    </form>
+</div>
+{{/partial}}
+{{> layout.hbs}}

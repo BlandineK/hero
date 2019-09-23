@@ -1,0 +1,19 @@
+{{#partial "content"}}
+<div class="container-fluid" id="page7">
+    <h2>Hero Details:</h2>
+    <ul>
+        <li>$hero.getName()</li>
+        <li>$hero.getAge()</li>
+        <li>$hero.getPower()</li>
+        <li>$hero.getWeakness()</li>
+    </ul>
+    <br>
+    <br>
+    <a href="/heroes/new" class="btn btn-danger btn-lg">Add another hero</a>
+    <br>
+    <br>
+    <a href="/heroes" class="btn btn-danger btn-lg">All heroes</a>
+</div>
+{{/partial}}
+
+{{> layout.hbs}}

@@ -1,0 +1,17 @@
+{{#partial "content"}}
+   <h1>$squad.getName() heroes:</h1>
+   <br>
+   <br>
+   <br>
+
+   <ul>
+       #foreach($hero in $squad.getHeroes())
+       <li><a href="/heroes/$hero.getId()">$hero.getName()</a></li>
+
+       #end
+   </ul>
+
+   <a href="/squads/$squad.getId()/heroes/new" class="btn btn-danger btn-lg">Add a new hero</a>
+   <a href="/squads" class="btn btn-danger btn-lg">View all squads</a>
+{{/partial}}
+{{> layout.hbs}}
