@@ -10,9 +10,9 @@ A Spark app that allows you to recruit a team of superheroes depending on their 
  
  ## Technologies Used
   
-  .Java
-  .Spark
-  .Gradle
+  . Java
+  . Spark
+  . Gradle
  
  ## Support and Contact Details
    
