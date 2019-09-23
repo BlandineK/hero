@@ -9,7 +9,7 @@ import static spark.Spark.*;
 public class App {
     public static void main(String[] args) {
         staticFileLocation("/public");
-        String layout = "templates/layout.vtl";
+        String layout = "templates/layout.hbs";
         ProcessBuilder process = new ProcessBuilder();
         Integer port;
         if (process.environment().get("PORT") != null) {
@@ -21,9 +21,9 @@ public class App {
         setPort(port);
 
         get("/", (request, response) -> {
-           // System.out.println(Hero.all());
+            System.out.println(Hero.all());
             Map<String, Object> model = new HashMap<String, Object>();
-            //model.put("hero", Hero.all());
+            model.put("hero", Hero.all());
             model.put("template", "templates/categories.vtl");
             return new ModelAndView(new HashMap(),"home.hbs");
         }, new HandlebarsTemplateEngine());
@@ -43,14 +43,14 @@ get("/heroo",(request, response) ->{
 
         get("/squad-form",(request, response) ->{
             Map<String, Object> model = new HashMap<String,Object>();
-            model.put("template", "templates/squad-form.vtl");
+            model.put("template", "templates/squad-form.hbs");
             return new ModelAndView(model, "squad-form.hbs");
         }, new HandlebarsTemplateEngine());
 
         get("/squads",(request, response) -> {
             Map<String, Object> model = new HashMap<String, Object>();
             model.put("squads", Squad.all());
-            model.put("template", "templates/squads.vtl");
+            model.put("template", "templates/squads.hbs");
             return new ModelAndView(new HashMap(), "squad.hbs");
         }, new HandlebarsTemplateEngine());
 
@@ -58,7 +58,7 @@ get("/heroo",(request, response) ->{
             Map<String, Object> model = new HashMap<String, Object>();
             Squad squad = Squad.find(Integer.parseInt(request.params(":id")));
             model.put("squad", squad);
-            model.put("template", "templates/squad.vtl");
+            model.put("template", "templates/squad.hbs");
             return new ModelAndView(model, layout);
         }, new HandlebarsTemplateEngine());
 
@@ -66,7 +66,7 @@ get("/heroo",(request, response) ->{
             Map<String, Object> model = new HashMap<String, Object>();
             Squad squad = Squad.find(Integer.parseInt(request.params(":id")));
             model.put("squad", squad);
-            model.put("template", "templates/squad-heroes-form.vtl");
+            model.put("template", "templates/squad-heroes-form.hbs");
             return new ModelAndView(model, layout);
         }, new HandlebarsTemplateEngine());
 
@@ -85,8 +85,6 @@ get("/heroo",(request, response) ->{
             Hero newHero = new Hero(name, age, power, weakness);
             heroes.add(newHero);
             request.session().attribute("heroes", heroes);
-
-            model.put("template", "templates/heroList.vtl");
             return new ModelAndView(model, layout);
         }, new HandlebarsTemplateEngine());
 
@@ -97,7 +95,6 @@ get("/heroo",(request, response) ->{
             int size = Integer.parseInt(request.queryParams("size"));
             String cause = request.queryParams("cause");
             Squad newSquad = new Squad(name, size, cause);
-            model.put("template", "templates/squad-List.vtl");
             return new ModelAndView(model, layout);
         }, new HandlebarsTemplateEngine());
 
@@ -115,7 +112,6 @@ get("/heroo",(request, response) ->{
             squad.addHero(newHero);
 
             model.put("squad", squad);
-            model.put("template", "templates/squad-heroes-List.vtl");
             return new ModelAndView(model, layout);
         }, new HandlebarsTemplateEngine());
 
